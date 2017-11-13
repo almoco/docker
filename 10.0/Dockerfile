@@ -19,7 +19,15 @@ RUN set -x; \
         && apt-get -y install -f --no-install-recommends \
         && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false npm \
         && rm -rf /var/lib/apt/lists/* wkhtmltox.deb \
-        && pip install psycogreen==1.0 PyJWT==1.4.2 imgix==1.1.2 elasticsearch-dsl==5.3.0
+        && pip install psycogreen==1.0
+
+# Install more stuff
+RUN set -x; \
+        pip install \
+                PyJWT==1.4.2 \
+                imgix==1.1.2 \
+                elasticsearch-dsl==5.3.0 \
+                PySocks==1.6.7
 
 # Install Odoo
 ENV ODOO_VERSION 10.0
