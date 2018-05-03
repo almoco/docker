@@ -27,7 +27,8 @@ RUN set -x; \
                 PyJWT==1.4.2 \
                 imgix==1.1.2 \
                 elasticsearch-dsl==5.3.0 \
-                PySocks==1.6.7
+                PySocks==1.6.7 \
+                boto3==1.7.12
 
 # Install Odoo
 ENV ODOO_VERSION 10.0
