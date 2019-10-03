@@ -5,14 +5,14 @@ MAINTAINER Odoo S.A. <info@odoo.com>
 RUN set -x; \
         apt-get update \
         && apt-get install -y --no-install-recommends \
-            ca-certificates \
-            curl \
-            node-less \
-            python-gevent \
-            python-pip \
-            python-renderpm \
-            python-support \
-            python-watchdog \
+        ca-certificates \
+        curl \
+        node-less \
+        python-gevent \
+        python-pip \
+        python-renderpm \
+        python-support \
+        python-watchdog \
         && curl -o wkhtmltox.deb -SL http://nightly.odoo.com/extra/wkhtmltox-0.12.1.2_linux-jessie-amd64.deb \
         && echo '40e8b906de658a2221b15e4e8cd82565a47d7ee8 wkhtmltox.deb' | sha1sum -c - \
         && dpkg --force-depends -i wkhtmltox.deb \
@@ -21,14 +21,22 @@ RUN set -x; \
         && rm -rf /var/lib/apt/lists/* wkhtmltox.deb \
         && pip install psycogreen==1.0
 
+RUN echo "INSTALLING PIP STUFF .."
+
 # Install more stuff
 RUN set -x; \
         pip install \
-                PyJWT==1.4.2 \
-                imgix==1.1.2 \
-                elasticsearch-dsl==5.3.0 \
-                PySocks==1.6.7 \
-                boto3==1.7.12
+        urllib3==1.23
+
+# Install more stuff
+RUN set -x; \
+        pip install \
+        PyJWT==1.4.2 \
+        imgix==1.1.2 \
+        elasticsearch-dsl==5.3.0 \
+        PySocks==1.6.7 \
+        boto3==1.7.12 \
+        swish==1.1
 
 # Install Odoo
 ENV ODOO_VERSION 10.0
